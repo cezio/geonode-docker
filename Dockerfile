@@ -1,5 +1,5 @@
 FROM python:2.7.14-stretch
-MAINTAINER Ariel Núñez<ariel@terranodo.io>
+MAINTAINER cezary.statkiewicz@geo-solutions.it
 
 RUN mkdir -p /usr/src/{app,geonode}
 
@@ -36,7 +36,7 @@ RUN pip install GDAL==2.1.3 --global-option=build_ext --global-option="-I/usr/in
 
 # install shallow clone of geonode master branch
 RUN git clone --depth=1 git://github.com/GeoNode/geonode.git --branch master /usr/src/geonode
-RUN cd /usr/src/geonode/; pip install --no-cache-dir -r requirements.txt; pip install --no-deps -e .
+RUN cd /usr/src/geonode/; pip install --no-cache-dir --upgrade -r requirements.txt; pip install --no-deps -e .
 
 RUN ln -fs /usr/lib/python2.7/plat-x86_64-linux-gnu/_sysconfigdata*.py /usr/lib/python2.7/
 
